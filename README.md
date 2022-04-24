@@ -2,7 +2,7 @@
     <img src="Logo.jpeg">
 </p>
 <p align="center">
-    [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands) • [Discord server](https://discord.gg/RVMNP6TAGx)
+    <a href="https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands">Invite me!</a> • <a href="https://discord.gg/RVMNP6TAGx">Discord server</a>
 </p>
 
 # Grandpa bot
