@@ -8,7 +8,7 @@
 # Grandpa bot
 This is the official repository for Grandpa bot. You can use this as source code(if you do please credit this repository), or you can contribute to the bot here!
 
-To unlock the full functionality, you can invite him [here](https://discord.com/oauth2/authorize?client_id=503720029456695306&scope=bot&permissions=537263168)
+To unlock the full functionality, you can invite dad bot [here](https://discord.com/oauth2/authorize?client_id=503720029456695306&scope=bot&permissions=537263168)
 
 # Features
 
