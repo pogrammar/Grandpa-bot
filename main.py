@@ -93,7 +93,11 @@ async def setprefix(ctx, *, new_prefix):
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
     await ctx.respond(f"Invite me: https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands")    
-       
+
+@bot.bridge_command()
+@commands.cooldown(1, 30, commands.BucketType.user)
+async def patreon(ctx):
+    await ctx.respond(f"Become a patron: https://www.patreon.com/betchespy")    
     
 bot.loop.run_until_complete(create_db_pool())
 
