@@ -33,7 +33,7 @@ bot = bridge.Bot(command_prefix=get_prefix,
 
 
 async def create_db_pool():
-    bot.db = await asyncpg.create_pool(dsn='PostgreSQl db url')
+    bot.db = await asyncpg.create_pool(dsn='postgresql://postgres:HDu32A7NDZb0d5QqNq3y@containers-us-west-44.railway.app:5472/railway')
     print("pgAdmin Connection sucessfull")
 
 for filename in os.listdir("./cogs"):
@@ -75,9 +75,6 @@ async def on_guild_join(guild: discord.Guild):
     view.add_item(button)
 
     await channel.send(embed=embed, view=view)
-    
-    
-
 
 @bot.event
 async def on_guild_remove(guild):
@@ -90,7 +87,15 @@ async def on_guild_remove(guild):
 async def setprefix(ctx, *, new_prefix):
     await bot.db.execute('UPDATE guilds SET prefix = $1 WHERE "guild_id" = $2', new_prefix, ctx.guild.id)
     await ctx.respond(f"Server prefix changed to {new_prefix}")
+    
 
+@bot.bridge_command()
+@commands.cooldown(1, 30, commands.BucketType.user)
+async def invite(ctx):
+    await ctx.respond(f"Invite me: https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands")    
+       
+    
 bot.loop.run_until_complete(create_db_pool())
 
 bot.run(config.TOKEN)
+
