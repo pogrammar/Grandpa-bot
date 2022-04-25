@@ -19,7 +19,7 @@ To unlock the full functionality, you can invite dad bot [here](https://discord.
 - ✅ Joke commands
 - ✅ Owner commands
 - ✅ Privacy
-- Games
+- ✅ Games
 
 
 ### The use of this bot is in agreement of the [Privacy Policy](https://github.com/pogrammar/Grandpa-bot/blob/master/PRIVACY.md)
