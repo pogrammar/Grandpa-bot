@@ -29,7 +29,7 @@ class Privacy(commands.Cog):
         
         embed.set_footer(text="If any Questions, use the commands for developer contact")
         
-        button = Button(label="Privacy Policy", url="https://gist.github.com/pogrammar/ef4961aa484972f606a2bfb506db8d6a")
+        button = Button(label="Privacy Policy", url="hhttps://github.com/pogrammar/Grandpa-bot/blob/master/PRIVACY.md")
         view = View(timeout=30)
         view.add_item(button)
 
