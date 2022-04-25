@@ -27,13 +27,13 @@ class TicTacToeButton(discord.ui.Button["TicTacToe"]):
 
         if view.current_player == view.X:
             self.style = discord.ButtonStyle.danger
-            self.label = "X"
+            self.label = "<:X_:968012049957412925>"
             view.board[self.y][self.x] = view.X
             view.current_player = view.O
             content = "It is now O's turn"
         else:
             self.style = discord.ButtonStyle.success
-            self.label = "O"
+            self.label = "<:O_:968012050020307004>"
             view.board[self.y][self.x] = view.O
             view.current_player = view.X
             content = "It is now X's turn"
