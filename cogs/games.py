@@ -27,13 +27,13 @@ class TicTacToeButton(discord.ui.Button["TicTacToe"]):
 
         if view.current_player == view.X:
             self.style = discord.ButtonStyle.danger
-            self.label = "<:X_:968012049957412925>"
+            self.label = "X"
             view.board[self.y][self.x] = view.X
             view.current_player = view.O
             content = "It is now O's turn"
         else:
             self.style = discord.ButtonStyle.success
-            self.label = "<:O_:968012050020307004>"
+            self.label = "O"
             view.board[self.y][self.x] = view.O
             view.current_player = view.X
             content = "It is now X's turn"
@@ -128,7 +128,7 @@ class Games(commands.Cog):
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def tic(self, ctx):
         """Starts a tic-tac-toe game with yourself."""
-        await ctx.send("Tic Tac Toe: X goes first", view=TicTacToe())
+        await ctx.respond("Tic Tac Toe: X goes first", view=TicTacToe())
 
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
@@ -141,7 +141,7 @@ class Games(commands.Cog):
             rpsEmbed.add_field(name='Paper', value='\U0001f4dc')
             rpsEmbed.add_field(name='Scissors', value='\U00002702')
             rpsEmbed.set_footer(text='the message you will be deleted after 1 min')
-            question_choose = await ctx.send(embed=rpsEmbed)
+            question_choose = await ctx.respond(embed=rpsEmbed)
             await question_choose.add_reaction('\U0001faa8')
             await question_choose.add_reaction('\U0001f4dc')
             await question_choose.add_reaction('\U00002702')
@@ -168,7 +168,7 @@ class Games(commands.Cog):
                         name='Tie', icon_url='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/anticlockwise-downwards-and-upwards-open-circle-arrows_1f504.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
                 
                 elif str(bot_select) == u'\U0001faa8':
                     choose_embed = discord.Embed(color=0x2ecc71)
@@ -180,7 +180,7 @@ class Games(commands.Cog):
                         name='Tie', icon_url='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/anticlockwise-downwards-and-upwards-open-circle-arrows_1f504.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
                 
                 elif str(bot_select) == u'\U0001f4dc':
                     choose_embed = discord.Embed(color=0x2ecc71)
@@ -192,7 +192,7 @@ class Games(commands.Cog):
                         name='Tie', icon_url='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/anticlockwise-downwards-and-upwards-open-circle-arrows_1f504.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
             
             elif str(user_select) == u'\U0001faa8':
                 await question_choose.delete()
@@ -206,7 +206,7 @@ class Games(commands.Cog):
                         name='You Win', icon_url='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/259/check-mark-button_2705.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
                 elif str(bot_select) == u'\U0001f4dc':
                     choose_embed = discord.Embed(color=0x2ecc71)
                     choose_embed.add_field(
@@ -217,7 +217,7 @@ class Games(commands.Cog):
                         name='You Lose', icon_url='https://images.emojiterra.com/mozilla/512px/274c.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
             elif str(user_select) == u'\U0001f4dc':
                 await question_choose.delete()
                 if str(bot_select) == u'\U0001faa8':
@@ -230,7 +230,7 @@ class Games(commands.Cog):
                         name='You Win', icon_url='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/259/check-mark-button_2705.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
                 elif str(bot_select) == u'\U00002702':
                     choose_embed = discord.Embed(color=0x2ecc71)
                     choose_embed.add_field(
@@ -241,7 +241,7 @@ class Games(commands.Cog):
                         name='You Lose', icon_url='https://images.emojiterra.com/mozilla/512px/274c.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
             elif str(user_select) == u'\U00002702':
                 await question_choose.delete()
                 if str(bot_select) == u'\U0001faa8':
@@ -254,7 +254,7 @@ class Games(commands.Cog):
                         name='You Lose', icon_url='https://images.emojiterra.com/mozilla/512px/274c.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
                 elif str(bot_select) == u'\U0001f4dc':
                     choose_embed = discord.Embed(color=0x2ecc71)
                     choose_embed.add_field(
@@ -265,16 +265,16 @@ class Games(commands.Cog):
                         name='You Win', icon_url='https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/259/check-mark-button_2705.png')
                     choose_embed.set_footer(
                         text=ctx.author.name, icon_url=ctx.author.avatar.url)
-                    await ctx.send(embed=choose_embed)
+                    await ctx.respond(embed=choose_embed)
         except asyncio.TimeoutError:
-            timeout = await ctx.send('The Time is end try again')
+            timeout = await ctx.respond('The Time is end try again')
             await timeout.delete(delay=10)
 
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roll(self, ctx):
         """Rolls a dice... That's all."""
-        message = await ctx.send("Choose a number:\n**4**, **6**, **8**, **10**, **12**, **20** ")
+        message = await ctx.respond("Choose a number:\n**4**, **6**, **8**, **10**, **12**, **20** ")
         
         def check(m):
             return m.author == ctx.author
@@ -284,13 +284,13 @@ class Games(commands.Cog):
             m = message.content
 
             if m != "4" and m != "6" and m != "8" and m != "10" and m != "12" and m != "20":
-                await ctx.send("Sorry, invalid choice.")
+                await ctx.respond("Sorry, invalid choice.")
                 return
             
-            await ctx.send(f"**{random.randint(1, int(m))}**")
+            await ctx.respond(f"**{random.randint(1, int(m))}**")
         except asyncio.TimeoutError:
             await message.delete()
-            await ctx.send("Process has been canceled because you didn't respond in **30 seconds**")
+            await ctx.respond("Process has been canceled because you didn't respond in **30 seconds**")
 
 def setup(bot):
     bot.add_cog(Games(bot))
