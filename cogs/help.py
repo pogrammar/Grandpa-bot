@@ -16,6 +16,9 @@ class Help(commands.Cog):
             
         ]
         self.pages[1].add_field(name="Dad jokes", value=f"Usage: `~joke`\nSends: `A dad joke`\ncooldown: `30 seconds`", inline=False)
+        self.pages[1].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
+        self.pages[1].add_field(name="Rock paper scissors", value=f"Usage: `~rps`\nSends: `A Rock paper scissors game`\ncooldown: `30 seconds`", inline=False)
+        self.pages[1].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
         
         self.pages[2].add_field(name="Set prefix", value=f"Usage: `~setprefix <new_prefix>`\nChanges: `The server prefix`\ncooldown: `30 seconds`", inline=False)
 

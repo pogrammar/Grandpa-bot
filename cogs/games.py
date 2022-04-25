@@ -126,7 +126,7 @@ class Games(commands.Cog):
 
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
-    async def tic(ctx):
+    async def tic(self, ctx):
         """Starts a tic-tac-toe game with yourself."""
         await ctx.send("Tic Tac Toe: X goes first", view=TicTacToe())
 
