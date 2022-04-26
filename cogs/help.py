@@ -57,6 +57,10 @@ class Help(commands.Cog):
 
     @commands.command()
     async def help(self, ctx):
+        page_buttons_none = [
+            pages.PaginatorButton("page_indicator", style=discord.ButtonStyle.gray, disabled=True),
+        ]
+
         page_buttons_basic = [
             pages.PaginatorButton("prev", label="<-", style=discord.ButtonStyle.blurple),
             pages.PaginatorButton("page_indicator", style=discord.ButtonStyle.gray, disabled=True),
@@ -76,8 +80,7 @@ class Help(commands.Cog):
                 label="About",
                 description="About this bot.",
                 use_default_buttons=False,
-                custom_buttons=None,
-                show_disabled=False,
+                custom_buttons=page_buttons_none,
             ),
             pages.PageGroup(
                 pages=self.command_pages,
