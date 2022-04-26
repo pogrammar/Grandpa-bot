@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Logo.jpeg">
+    <img src="./assets/Logo.jpeg">
 </p>
 <p align="center">
     <a href="https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands">Invite me!</a> • <a href="https://discord.gg/RVMNP6TAGx">Discord server</a>
