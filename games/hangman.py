@@ -1,22 +1,7 @@
 import random 
 import asyncio
 
-words = ['conversation', 'bowtie', 'skateboard', 'penguin', 'hospital', 'player', 'kangaroo', 
-		'garbage', 'whisper', 'achievement', 'flamingo', 'calculator', 'offense', 'spring', 
-		'performance', 'sunburn', 'reverse', 'round', 'horse', 'nightmare', 'popcorn', 
-		'hockey', 'exercise', 'programming', 'platypus', 'blading', 'music', 'opponent', 
-		'electricity', 'telephone', 'scissors', 'pressure', 'monkey', 'coconut', 'backbone', 
-		'rainbow', 'frequency', 'factory', 'cholesterol', 'lighthouse', 'president', 'palace', 
-		'excellent', 'telescope', 'python', 'government', 'pineapple', 'volcano', 'alcohol', 
-		'mailman', 'nature', 'dashboard', 'science', 'computer', 'circus', 'earthquake', 'bathroom', 
-		'toast', 'football', 'cowboy', 'mattress', 'translate', 'entertainment', 'glasses', 
-		'download', 'water', 'violence', 'whistle', 'alligator', 'independence', 'pizza', 
-		'permission', 'board', 'pirate', 'battery', 'outside', 'condition', 'shallow', 'baseball', 
-		'lightsaber', 'dentist', 'pinwheel', 'snowflake', 'stomach', 'reference', 'password', 'strength', 
-		'mushroom', 'student', 'mathematics', 'instruction', 'newspaper', 'gingerbread', 
-		'emergency', 'lawnmower', 'industry', 'evidence', 'dominoes', 'lightbulb', 'stingray', 
-		'background', 'atmosphere', 'treasure', 'mosquito', 'popsicle', 'aircraft', 'photograph', 
-		'imagination', 'landscape', 'digital', 'pepper', 'roller', 'bicycle', 'toothbrush', 'newsletter']  
+words = ["No one gets to see the words hehe"]  
 
 images =   ['```\n   +---+\n   O   | \n  /|\\  | \n  / \\  | \n      ===```',   
 			'```\n   +---+ \n   O   | \n  /|\\  | \n  /    | \n      ===```', 
