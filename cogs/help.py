@@ -15,16 +15,16 @@ class Help(commands.Cog):
 
 
         self.command_pages = [
-            discord.Embed(title="Commands", description="Functions that are trigered when the prefix `~` is given.\n\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
-            discord.Embed(title="Dad jokes", description=f"Usage: `~joke`\nSends: `A dad joke`\ncooldown: `30 seconds`", color=discord.Color.random()),
-            discord.Embed(title="Games", description=f"In-Built fun games to play :)`", color=discord.Color.random()),
+            discord.Embed(title="Commands", description="Functions that are trigered when the prefix `~` is given.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
+            discord.Embed(title="Dad jokes", description=f"Usage: `~joke`\nSends: `A dad joke`\ncooldown: `30 seconds`\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
+            discord.Embed(title="Games", description=f"In-Built fun games to play :)\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
         ]
         self.command_pages[2].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
 
 
         self.guild_admin_command_pages = [
-            discord.Embed(title="Guild Admin Commands", description="Functions that are only the mods/admins can execute `~` is given.\n\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
+            discord.Embed(title="Guild Admin Commands", description="Functions that are only the mods/admins can execute `~` is given.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
         ]
 
         self.guild_admin_command_pages[0].add_field(name="Set prefix", value=f"Usage: `~setprefix <new_prefix>`\nChanges: `The server prefix`\ncooldown: `30 seconds`", inline=False)
@@ -32,7 +32,7 @@ class Help(commands.Cog):
 
 
         self.developer_contact_pages = [
-            discord.Embed(title="Developer contact", description="Commands to send feedback to the developers.\n\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
+            discord.Embed(title="Developer contact", description="Commands to send feedback to the developers.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
         
         ]
         self.developer_contact_pages[0].add_field(name="Suggest", value=f"Usage: `~suggest`\nSends: `An input box to send the devs a suggestion.`", inline=False)
@@ -41,14 +41,14 @@ class Help(commands.Cog):
 
 
         self.privacy_pages = [
-            discord.Embed(title="Privacy", description="The command to view our Privacy policy.\n\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
+            discord.Embed(title="Privacy", description="The command to view our Privacy policy.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
      
         ]
         self.privacy_pages[0].add_field(name="privacy", value=f"Usage: `~privacy`\nSends: `Our privacy policy.`", inline=False)
 
 
         self.owner_pages = [
-            discord.Embed(title="Owner only", description="Commands that can only be executed by my owner.\n\n__**Every command except the status commands are availible in slash commands.**__", color=discord.Color.random()),
+            discord.Embed(title="Owner only", description="Commands that can only be executed by my owner.\n\n__**Every command except the status commands are availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy", color=discord.Color.random()),
         ]
         self.owner_pages[0].add_field(name="Servers", value=f"Usage: `~servers`\nSends: `The count of the servers the bot is in.`", inline=False)
         self.owner_pages[0].add_field(name="Ping", value=f"Usage: `~ping`\nSends: `The ping latency.`", inline=False)
