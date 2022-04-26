@@ -13,7 +13,7 @@ To unlock the full functionality, you can invite dad bot [here](https://discord.
 # Features
 
 - ✅ Autoresponses
-- ✅ Developer contact
+- ✅ Developer contact with modals
 - ✅ Error handling
 - ✅ Paginator help
 - ✅ Joke commands
