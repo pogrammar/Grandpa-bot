@@ -17,31 +17,31 @@ class Help(commands.Cog):
         self.command_pages = [
             discord.Embed(title="Commands", description="Functions that are trigered when the prefix `~` is given.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
             discord.Embed(title="Dad jokes", description=f"Usage: `~joke`\nSends: `A dad joke`\ncooldown: `30 seconds`\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
-            discord.Embed(title="Games", description=f"In-Built fun games to play :)\n__**These are NOT availible in slash commands.**__\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
+            discord.Embed(title="Games", description=f"In-Built fun games to play :)\n__**These are NOT availible in slash commands.**__", color=discord.Color.random()),
         ]
         self.command_pages[2].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Rock paper scissors", value=f"Usage: `~rps`\nSends: `A Rock paper scissors game`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="8ball", value=f"Usage: `~8ball`\nSummons: `The 8ball`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Hangman", value=f"Usage: `~hangman`\nSends: `A hangman game.`\ncooldown: `30 seconds`", inline=False)
-        self.command_pages[2].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`", inline=False)
+        self.command_pages[2].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
 
 
         self.guild_admin_command_pages = [
-            discord.Embed(title="Guild Admin Commands", description="Functions that are only the mods/admins can execute `~` is given.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
+            discord.Embed(title="Guild Admin Commands", description="Functions that are only the mods/admins can execute `~` is given.\n\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
         ]
 
-        self.guild_admin_command_pages[0].add_field(name="Set prefix", value=f"Usage: `~setprefix <new_prefix>`\nChanges: `The server prefix`\ncooldown: `30 seconds`", inline=False)
+        self.guild_admin_command_pages[0].add_field(name="Set prefix", value=f"Usage: `~setprefix <new_prefix>`\nChanges: `The server prefix`\ncooldown: `30 seconds`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
         
 
 
         self.developer_contact_pages = [
-            discord.Embed(title="Developer contact", description="Commands to send feedback to the developers.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
+            discord.Embed(title="Developer contact", description="Commands to send feedback to the developers.\n\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
         
         ]
         self.developer_contact_pages[0].add_field(name="Suggest", value=f"Usage: `~suggest`\nSends: `An input box to send the devs a suggestion.`", inline=False)
         self.developer_contact_pages[0].add_field(name="Feedback", value=f"Usage: `~feedback`\nSends: `An input box to send the devs feedback. Its valuable!`", inline=False)
-        self.developer_contact_pages[0].add_field(name="Error report", value=f"Usage: `~report`\nSends: `An input box to send the devs a report for an error. Its valuable!`", inline=False)
+        self.developer_contact_pages[0].add_field(name="Error report", value=f"Usage: `~report`\nSends: `An input box to send the devs a report for an error. Its valuable!`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
 
 
         self.privacy_pages = [
