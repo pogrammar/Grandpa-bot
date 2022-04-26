@@ -1,6 +1,5 @@
 import discord
-import random
-from discord.ext import commands, pages, bridge
+from discord.ext import commands, pages
 from discord.ui import *
 
 class Help(commands.Cog):

@@ -1,4 +1,3 @@
 git+https://github.com/Pycord-Development/pycord
 dadjokes
 asyncpg
-git+https://github.com/1Prototype1/aiopentdb

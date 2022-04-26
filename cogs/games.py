@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands, bridge
 from discord.ui import *
 from games import hangman
-import aiopentdb
 from typing import List
 import random
 import asyncio
