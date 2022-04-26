@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands, bridge
 from discord.ui import *
+from games import hangman
+import aiopentdb
 from typing import List
 import random
 import asyncio
@@ -124,13 +126,13 @@ class Games(commands.Cog):
         
 
 
-    @bridge.bridge_command()
+    @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def tic(self, ctx):
         """Starts a tic-tac-toe game."""
         await ctx.respond("Tic Tac Toe: X goes first", view=TicTacToe())
 
-    @bridge.bridge_command()
+    @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roll(self, ctx):
         """Rolls a dice... That's all."""
@@ -151,6 +153,66 @@ class Games(commands.Cog):
         except asyncio.TimeoutError:
             await message.delete()
             await ctx.respond("Process has been canceled because you didn't respond in **30 seconds**")
+
+    @commands.command(name="8ball")
+    @commands.cooldown(1, 30, commands.BucketType.user)
+    async def eight_ball(self, ctx, ques=""):
+        if ques=="":
+            await ctx.respond("I need a question to answer")
+        else:
+            choices = [
+            'It is certain.', 'It is decidedly so.', 'Without a doubt.', 'Yes – definitely.', 'You may rely on it.',
+            'As I see it, yes.', 'Most likely.', 'Outlook good.', 'Yes.', 'Signs point to yes.',
+            'Reply hazy, try again.', 'Ask again later.', 'Better not tell you now.', 'Cannot predict now.', 'Concentrate and ask again.',
+            "Don't count on it.", 'My reply is no.', 'My sources say no.', 'Outlook not so good.', 'Very doubtful.'
+            ]
+            await ctx.respond(f":8ball: said:||{random.choice(choices)}||")
+    
+    @commands.command(name='hangman', aliases=['hang'])
+    @commands.cooldown(1, 30, commands.BucketType.user)
+    async def hangman(self, ctx):
+        await hangman.play(self.bot, ctx)
+    
+    @commands.command(name='rps', aliases=['rockpaperscissors'])
+    @commands.cooldown(1, 30, commands.BucketType.user)
+    async def rps(self, ctx):
+        def check_win(p, b):
+            if p=='🌑':
+                return False if b=='📄' else True
+            if p=='📄':
+                return False if b=='✂' else True
+            # p=='✂'
+            return False if b=='🌑' else True
+
+        async with ctx.typing():
+            reactions = ['🌑', '📄', '✂']
+            game_message = await ctx.send("**Rock Paper Scissors**\nChoose your shape:", delete_after=15.0)
+            for reaction in reactions:
+                await game_message.add_reaction(reaction)
+            bot_emoji = random.choice(reactions)
+
+        def check(reaction, user):
+            return user != self.bot.user and user == ctx.author and (str(reaction.emoji) == '🌑' or '📄' or '✂')
+        try:
+            reaction, _ = await self.bot.wait_for('reaction_add', timeout=10.0, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Time's Up! :stopwatch:")
+        else:
+            await ctx.send(f"**You chose: \t{reaction.emoji}\n I chose: \t{bot_emoji}**")
+            # if conds
+            if str(reaction.emoji) == bot_emoji:
+                await ctx.send("**It's a Tie**")
+            elif check_win(str(reaction.emoji), bot_emoji):
+                await ctx.send("**You win :tada:**")
+            else:
+                await ctx.send("**I win :smile:**")
+
+    @commands.command(name='toss', aliases=['flip'])
+    @commands.cooldown(1, 30, commands.BucketType.user)
+    async def toss(self, ctx):
+        coin = ['+ heads', '- tails']
+        await ctx.send(f"```diff\n{random.choice(coin)}\n```")
+
 
 def setup(bot):
     bot.add_cog(Games(bot))
