@@ -1,3 +1,4 @@
+from os import name
 import discord
 from discord.ext import commands, bridge
 from discord.ui import *
@@ -125,13 +126,13 @@ class Games(commands.Cog):
         
 
 
-    @commands.command()
+    @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def tic(self, ctx):
         """Starts a tic-tac-toe game."""
         await ctx.respond("Tic Tac Toe: X goes first", view=TicTacToe())
 
-    @commands.command()
+    @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roll(self, ctx):
         """Rolls a dice... That's all."""
@@ -145,17 +146,18 @@ class Games(commands.Cog):
             m = message.content
 
             if m != "4" and m != "6" and m != "8" and m != "10" and m != "12" and m != "20":
-                await ctx.respond("Sorry, invalid choice.")
+                await message.send("Sorry, invalid choice.")
                 return
             
-            await ctx.respond(f"**{random.randint(1, int(m))}**")
+            await message.send(f"**{random.randint(1, int(m))}**")
         except asyncio.TimeoutError:
             await message.delete()
             await ctx.respond("Process has been canceled because you didn't respond in **30 seconds**")
 
-    @commands.command(name="8ball")
+    @bridge.bridge_command(name="8ball")
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def eight_ball(self, ctx, ques=""):
+        """Ask me a question!."""
         if ques=="":
             await ctx.respond("I need a question to answer")
         else:
@@ -167,14 +169,16 @@ class Games(commands.Cog):
             ]
             await ctx.respond(f":8ball: said:||{random.choice(choices)}||")
     
-    @commands.command(name='hangman', aliases=['hang'])
+    @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def hangman(self, ctx):
+        """Starts a hangman game."""
         await hangman.play(self.bot, ctx)
     
-    @commands.command(name='rps', aliases=['rockpaperscissors'])
+    @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def rps(self, ctx):
+        """Starts a rock-paper-scissors game."""
         def check_win(p, b):
             if p=='🌑':
                 return False if b=='📄' else True
@@ -183,12 +187,11 @@ class Games(commands.Cog):
             # p=='✂'
             return False if b=='🌑' else True
 
-        async with ctx.typing():
-            reactions = ['🌑', '📄', '✂']
-            game_message = await ctx.send("**Rock Paper Scissors**\nChoose your shape:", delete_after=15.0)
-            for reaction in reactions:
-                await game_message.add_reaction(reaction)
-            bot_emoji = random.choice(reactions)
+        reactions = ['🌑', '📄', '✂']
+        game_message = await ctx.send("**Rock Paper Scissors**\nChoose your shape:", delete_after=15.0)
+        for reaction in reactions:
+            await game_message.add_reaction(reaction)
+        bot_emoji = random.choice(reactions)
 
         def check(reaction, user):
             return user != self.bot.user and user == ctx.author and (str(reaction.emoji) == '🌑' or '📄' or '✂')
@@ -206,11 +209,12 @@ class Games(commands.Cog):
             else:
                 await ctx.send("**I win :smile:**")
 
-    @commands.command(name='toss', aliases=['flip'])
+    @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def toss(self, ctx):
+        """Toss a coin."""
         coin = ['+ heads', '- tails']
-        await ctx.send(f"```diff\n{random.choice(coin)}\n```")
+        await ctx.respond(f"```diff\n{random.choice(coin)}\n```")
 
 
 def setup(bot):

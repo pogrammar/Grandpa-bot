@@ -16,7 +16,7 @@ async def play(bot, ctx):
 	guesses = '' 
 	turns = 6
 	word = random.choice(words) 
-	await ctx.send("Guess the characters:")
+	msg = await ctx.respond("**Guess the characters**:\nType`Exit` to leave the game")
 	guess_msg = await ctx.send(images[turns])
 	word_msg = await ctx.send(f"`{' '.join('_'*len(word))}`")
 	while turns > 0: 
