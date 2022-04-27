@@ -5,6 +5,8 @@ from discord.ui import *
 from main import bot
 
 
+
+
 class SuggestionModal(Modal):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -12,12 +14,40 @@ class SuggestionModal(Modal):
 
         self.add_item(InputText(label="Suggestion", placeholder="Suggestion", style=discord.InputTextStyle.long))
 
-    async def callback(self, interaction: discord.Interaction):
-        embed = discord.Embed(title=f"New suggestion: {self.children[0].value}", description=self.children[1].value, color=discord.Color.random())      
-        embed.set_footer(text=interaction.user)
+    async def callback(self, interac: discord.Interaction):
+        embed = discord.Embed(title=f"New suggestion: {self.children[0].value}", description=self.children[1].value, color=discord.Color.random())
+        modal = Modal(title="Send a reply")
+        modal.add_item(
+            InputText(
+                label="Reply:",
+                style=discord.InputTextStyle.long,
+                placeholder="Reply"
+            )
+            )
+
+        async def modal_callback(Interaction: discord.Interaction):
+            embed = discord.Embed(title=f"Reply from the devs:", description=self.children[0].value, color=discord.Color.random())      
+            embed.add_field(name="Any more queries?", value="Does your query require further support? Join the support server [here](https://discord.gg/RVMNP6TAGx)")
+            member = await bot.fetch_user(interac.user.id)
+            await member.send(embed=embed)
+            await Interaction.response.send_message("sent!")
+
+        modal.callback = modal_callback
+        btn = Button(style=discord.ButtonStyle.blurple, label="Send a reply")
+        async def callback(interaction: discord.Interaction):
+            await interaction.response.send_modal(modal)
+
+        btn.callback = callback    
+
+        ReplyView = View(timeout=864000.0)
+        ReplyView.add_item(btn)
+
+
+        embed.set_footer(text=interac.user)
         member = await bot.fetch_user(734641452214124674)
-        await member.send(embed=embed)
-        await interaction.response.send_message("Suggestion sent!")
+
+        await member.send(embed=embed, view=ReplyView)
+        await interac.response.send_message("Suggestion sent!")
         
 
 class FeedbackModal(Modal):
@@ -27,12 +57,40 @@ class FeedbackModal(Modal):
 
         self.add_item(InputText(label="Description", placeholder="Description", style=discord.InputTextStyle.long))
 
-    async def callback(self, interaction: discord.Interaction):
-        embed = discord.Embed(title=f"Feedback: {self.children[0].value}", description=self.children[1].value, color=discord.Color.random())      
-        embed.set_footer(text=interaction.user)
+    async def callback(self, interac: discord.Interaction):
+        embed = discord.Embed(title=f"Feedback: {self.children[0].value}", description=self.children[1].value, color=discord.Color.random()) 
+        modal = Modal(title="Send a reply")
+        modal.add_item(
+            InputText(
+                label="Reply:",
+                style=discord.InputTextStyle.long,
+                placeholder="Reply"
+            )
+            )
+
+        async def modal_callback(interaction: discord.Interaction):
+            embed = discord.Embed(title=f"Reply from the devs:", description=self.children[0].value, color=discord.Color.random())      
+            embed.add_field(name="Any more queries?", value="Does your query require further support? Join the support server [here](https://discord.gg/RVMNP6TAGx)")
+            member = await bot.fetch_user(interac.user.id)
+            await member.send(embed=embed)
+            await interaction.response.send_message("sent!")
+
+        modal.callback = modal_callback
+        btn = Button(style=discord.ButtonStyle.blurple, label="Send a reply")
+        async def callback(interaction: discord.Interaction):
+            await interaction.response.send_modal(modal)
+
+        btn.callback = callback    
+
+        ReplyView = View(timeout=864000.0)
+        ReplyView.add_item(btn)
+
+
+        embed.set_footer(text=interac.user)
         member = await bot.fetch_user(734641452214124674)
-        await member.send(embed=embed)
-        await interaction.response.send_message("Feedback sent!")
+
+        await member.send(embed=embed, view=ReplyView)
+        await interac.response.send_message("Feedback sent!")
 
 
 
@@ -43,20 +101,47 @@ class ReportModal(Modal):
 
         self.add_item(InputText(label="Error Description", placeholder="Description", style=discord.InputTextStyle.long))
 
-    async def callback(self, interaction: discord.Interaction):
-        embed = discord.Embed(title=f"New error report: {self.children[0].value}", description=self.children[1].value, color=discord.Color.random())      
-        embed.set_footer(text=interaction.user)
+    async def callback(self, interac: discord.Interaction):
+        embed = discord.Embed(title=f"New error report: {self.children[0].value}", description=self.children[1].value, color=discord.Color.random())
+        modal = Modal(title="Send a reply")
+        modal.add_item(
+            InputText(
+                label="Reply:",
+                style=discord.InputTextStyle.long,
+                placeholder="Reply"
+            )
+            )
+
+        async def modal_callback(Interaction: discord.Interaction):
+            embed = discord.Embed(title=f"Reply from the devs:", description=self.children[0].value, color=discord.Color.random())      
+            embed.add_field(name="Any more queries?", value="Does your query require further support? Join the support server [here](https://discord.gg/RVMNP6TAGx)")
+            member = await bot.fetch_user(interac.user.id)
+            await member.send(embed=embed)
+            await Interaction.response.send_message("sent!")
+
+        modal.callback = modal_callback
+        btn = Button(style=discord.ButtonStyle.blurple, label="Send a reply")
+        async def callback(interaction: discord.Interaction):
+            await interaction.response.send_modal(modal)
+
+        btn.callback = callback    
+
+        ReplyView = View(timeout=864000.0)
+        ReplyView.add_item(btn)
+
+
+        embed.set_footer(text=interac.user)
         member = await bot.fetch_user(734641452214124674)
-        await member.send(embed=embed)
-        await interaction.response.send_message("Report sent!")
+
+        await member.send(embed=embed, view=ReplyView)
+        await interac.response.send_message("Report sent!")
 
 
 
 
 
 
-
-class DevContactClassic(commands.Cog):
+class DevContact(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -102,4 +187,4 @@ class DevContactClassic(commands.Cog):
         
         
 def setup(bot):
-    bot.add_cog(DevContactClassic(bot))
+    bot.add_cog(DevContact(bot))
