@@ -21,7 +21,6 @@ class Help(commands.Cog):
         self.command_pages[2].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Rock paper scissors", value=f"Usage: `~rps`\nSends: `A Rock paper scissors game`\ncooldown: `30 seconds`", inline=False)
-        self.command_pages[2].add_field(name="8ball", value=f"Usage: `~8ball`\nSummons: `The 8ball`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Hangman", value=f"Usage: `~hangman`\nSends: `A hangman game.`\ncooldown: `30 seconds`", inline=False)
         self.command_pages[2].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
 
