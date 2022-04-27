@@ -34,9 +34,8 @@ class SuggestionModal(Modal):
 
         modal.callback = modal_callback
         btn = Button(style=discord.ButtonStyle.blurple, label="Send a reply")
-        async def callback(button: discord.ui.button, interaction: discord.Interaction):
+        async def callback(interaction: discord.Interaction):
             await interaction.response.send_modal(modal)
-            button.disabled = True
 
         btn.callback = callback    
 
@@ -78,9 +77,8 @@ class FeedbackModal(Modal):
 
         modal.callback = modal_callback
         btn = Button(style=discord.ButtonStyle.blurple, label="Send a reply")
-        async def callback(button: discord.ui.button, interaction: discord.Interaction):
+        async def callback(interaction: discord.Interaction):
             await interaction.response.send_modal(modal)
-            button.disabled = True
 
         btn.callback = callback    
 
@@ -123,9 +121,8 @@ class ReportModal(Modal):
 
         modal.callback = modal_callback
         btn = Button(style=discord.ButtonStyle.blurple, label="Send a reply")
-        async def callback(button: discord.ui.button, interaction: discord.Interaction):
+        async def callback(interaction: discord.Interaction):
             await interaction.response.send_modal(modal)
-            button.disabled = True
 
         btn.callback = callback    
 
