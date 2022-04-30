@@ -16,13 +16,23 @@ class Help(commands.Cog):
         self.command_pages = [
             discord.Embed(title="Commands", description="Functions that are trigered when the prefix `~` is given.\n\n__**These are also availible in slash commands.**__\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
             discord.Embed(title="Dad jokes", description=f"Usage: `~joke`\nSends: `A dad joke`\ncooldown: `30 seconds`\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
-            discord.Embed(title="Games", description=f"In-Built fun games to play :)\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
         ]
-        self.command_pages[2].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
-        self.command_pages[2].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
-        self.command_pages[2].add_field(name="Rock paper scissors", value=f"Usage: `~rps`\nSends: `A Rock paper scissors game`\ncooldown: `30 seconds`", inline=False)
-        self.command_pages[2].add_field(name="Hangman", value=f"Usage: `~hangman`\nSends: `A hangman game.`\ncooldown: `30 seconds`", inline=False)
-        self.command_pages[2].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
+        
+        self.game_pages = [
+            discord.Embed(title="Games", description=f"In-Built fun games to play :)\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
+        ] 
+        self.game_pages[0].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Rock paper scissors", value=f"Usage: `~rps`\nSends: `A Rock paper scissors game`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Hangman", value=f"Usage: `~hangman`\nSends: `A hangman game.`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Akinator", value=f"Usage: `~aki`\nSends: `An akinator game.`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Connect Four", value=f"Usage: `~connect4 <@member>`\nSends: `A connect4 game.`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Memory", value=f"Usage: `~memory`\nSends: `A memory-based match the pair game.`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
+
+
+
+
 
 
         self.guild_admin_command_pages = [
@@ -86,6 +96,14 @@ class Help(commands.Cog):
                 label="Commands",
                 description="General commands.",
                 custom_buttons=page_buttons_advanced,
+                use_default_buttons=False,
+                show_disabled=False,
+            ),
+            pages.PageGroup(
+                pages=self.game_pages,
+                label="Games",
+                description="Fun Minigames to play :)",
+                custom_buttons=None,
                 use_default_buttons=False,
                 show_disabled=False,
             ),
