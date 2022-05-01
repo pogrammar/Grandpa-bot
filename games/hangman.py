@@ -16,7 +16,7 @@ async def play(bot, ctx):
 	guesses = '' 
 	turns = 6
 	word = random.choice(words) 
-	msg = await ctx.respond("**Guess the characters**:\nType`Exit` to leave the game")
+	msg = await ctx.respond("**Guess the characters**:\nType`Exit` to leave the game\n")
 	guess_msg = await ctx.send(images[turns])
 	word_msg = await ctx.send(f"`{' '.join('_'*len(word))}`")
 	while turns > 0: 
@@ -34,15 +34,13 @@ async def play(bot, ctx):
 			await word_msg.edit(content=f'**{word}**')
 			return await ctx.send("**You Win :trophy:**")
 
-		try:
-			msg = await bot.wait_for('message', check=check, timeout=20.0)
-			if msg.content == 'exit':
-				await ctx.send("You quit")
-				return
-		except asyncio.TimeoutError:
-			await ctx.send("You took too long :hourglass:")
-			await guess_msg.delete()
-			await word_msg.delete()
+		msg = await bot.wait_for('message', check=check, timeout=20.0)
+		if msg.content == 'exit':
+			await ctx.send("You quit")
+			return
+		if msg.content == word:
+			await word_msg.edit(content=f'**{word}**')
+			await ctx.send("**You Win :trophy:**")
 			return
 
 		guess =  msg.content[0]
