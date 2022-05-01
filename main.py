@@ -7,6 +7,7 @@ import random
 from discord.ui import *
 
 DEFAULT_PREFIX = '~'
+ 
 
 
 async def get_prefix(bot, message):
@@ -23,17 +24,21 @@ async def get_prefix(bot, message):
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = bridge.Bot(command_prefix=get_prefix,
-                   help_command=None, 
-                   intents = intents,
-                   activity=discord.Game("Starting up..."),
-                   status=discord.Status.dnd, 
-                   owner_id=734641452214124674,
-                  )
 
+class bot(bridge.Bot):
+    def __init__(self):
+        super().__init__(
+            command_prefix=get_prefix,
+            help_command=None,
+            intents = intents,
+            activity=discord.Game("Starting up..."),
+            status=discord.Status.dnd,
+            owner_id=734641452214124674,
+            
+        )
 
 async def create_db_pool():
-    bot.db = await asyncpg.create_pool(dsn='postgresql://postgres:HDu32A7NDZb0d5QqNq3y@containers-us-west-44.railway.app:5472/railway')
+    bot.db = await asyncpg.create_pool(dsn='DSN')
     print("pgAdmin Connection sucessfull")
 
 for filename in os.listdir("./cogs"):
