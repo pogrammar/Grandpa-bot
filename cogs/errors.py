@@ -53,10 +53,10 @@ class ErrorHandler(commands.Cog):
             except discord.Forbidden:
                 pass
             return
-        if isinstance(error, discord.errors.NotFound):
+        if isinstance(self, error, discord.NotFound()):
             await ctx.author.reply("Internet error.")
-        if isinstance(error, discord.errors.Forbidden):
-                pass
+        if isinstance(error, discord.Forbidden()):
+            pass
     @commands.Cog.listener()
     async def on_application_command_error(self, ctx, error):
                 # if command has local error handler, return
@@ -106,10 +106,11 @@ class ErrorHandler(commands.Cog):
             except discord.Forbidden:
                 pass
             return
-        if isinstance(error, discord.errors.NotFound):
+        if isinstance(error, discord.NotFound):
             await ctx.author.respond("Internet error.")
-        if isinstance(error, discord.errors.Forbidden):
-                pass
+            pass
+        if isinstance(error, discord.Forbidden):
+            pass
 
 
 def setup(bot):
