@@ -49,13 +49,12 @@ class ErrorHandler(commands.Cog):
 
         if isinstance(error, commands.NoPrivateMessage):
             try:
-                await ctx.author.reply('This command cannot be used in direct messages.')
+                await ctx.reply('This command cannot be used in direct messages.')
             except discord.Forbidden:
                 pass
             return
-        if isinstance(self, error, discord.NotFound()):
-            await ctx.author.reply("Internet error.")
-        if isinstance(error, discord.Forbidden()):
+        else:
+            await ctx.send("Internet error")
             pass
     @commands.Cog.listener()
     async def on_application_command_error(self, ctx, error):
@@ -106,10 +105,8 @@ class ErrorHandler(commands.Cog):
             except discord.Forbidden:
                 pass
             return
-        if isinstance(error, discord.NotFound):
-            await ctx.author.respond("Internet error.")
-            pass
-        if isinstance(error, discord.Forbidden):
+        else:
+            await ctx.respond("Internet error")
             pass
 
 

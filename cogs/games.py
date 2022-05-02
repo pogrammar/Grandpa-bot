@@ -1,13 +1,15 @@
 import discord
 from discord.ext import commands, bridge
 from discord.ui import *
-from games import hangman
+from GameHandler import hangman
 from typing import List
 import random
+import os
 import asyncio
 from main import bot
-from Discord_Games import button_games
-import Discord_Games as games
+import GameHandler
+from GameHandler import ButtonHandlers
+from GameHandler.ButtonHandlers import *
 
 
 class TicTacToeButton(discord.ui.Button["TicTacToe"]):
@@ -168,7 +170,7 @@ class Games(commands.Cog):
     async def rps(self, ctx):
         """Starts a rock-paper-scissors game."""
         await ctx.respond("Below:")
-        game = button_games.BetaRockPaperScissors()
+        game = ButtonHandlers.BetaRockPaperScissors()
         await game.start(ctx)
 
     @bridge.bridge_command()
@@ -182,7 +184,7 @@ class Games(commands.Cog):
     async def memory(self, ctx):
         """Start a memory-based match-the pair game."""
         await ctx.respond("Below:")
-        game = button_games.MemoryGame()
+        game = ButtonHandlers.MemoryGame()
         await game.start(ctx)
 
     @bridge.bridge_command()
@@ -190,7 +192,7 @@ class Games(commands.Cog):
     async def aki(self, ctx):
         """Start an akinator game."""
         await ctx.respond("Starting game...")
-        game = button_games.BetaAkinator()
+        game = ButtonHandlers.BetaAkinator()
         await game.start(ctx)
 
     @bridge.bridge_command()
@@ -198,7 +200,7 @@ class Games(commands.Cog):
     async def connect4(self, ctx, member: discord.Member):
         """Play connect4 with someone"""
         await ctx.respond("Below:")
-        game = games.ConnectFour(
+        game = ConnectFour(
             red  = ctx.author,         
             blue = member,             
         )
