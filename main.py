@@ -75,7 +75,7 @@ async def on_guild_join(guild: discord.Guild):
     embed=discord.Embed(title="Hi, I'm grandpa bot!", description=f"Thank you for adding me! <3\nNote that I do not need any setup whatsoever.\n\nPrefix: `~`\nHelp command: `~help`", color=discord.Color.random())
     embed.set_footer(text="The use of this bot is in agreement of the privacy policy.")
 
-    button = Button(label="Privacy Policy", url="https://gist.github.com/pogrammar/ef4961aa484972f606a2bfb506db8d6a")
+    button = Button(label="Privacy Policy", url="https://github.com/pogrammar/Grandpa-bot/blob/master/PRIVACY.md")
     view = View(timeout=30)
     view.add_item(button)
 
