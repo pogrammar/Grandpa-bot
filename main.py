@@ -7,7 +7,6 @@ import random
 from discord.ui import *
 
 DEFAULT_PREFIX = '~'
- 
 
 
 async def get_prefix(bot, message):
@@ -24,26 +23,21 @@ async def get_prefix(bot, message):
 
 intents = discord.Intents.default()
 intents.message_content = True
-
-class bot(bridge.Bot):
-    def __init__(self):
-        super().__init__(
-            command_prefix=get_prefix,
-            help_command=None,
-            intents = intents,
-            activity=discord.Game("Starting up..."),
-            status=discord.Status.dnd,
-            owner_id=734641452214124674,
-            
-        )
+bot = bridge.Bot(command_prefix=get_prefix,
+                   help_command=None, 
+                   intents = intents,
+                   activity=discord.Game("Starting up..."),
+                   status=discord.Status.dnd, 
+                   owner_id=734641452214124674,
+                  )
 
 async def create_db_pool():
-    bot.db = await asyncpg.create_pool(dsn='DSN')
+    bot.db = await asyncpg.create_pool(dsn='postgresql://postgres:G5KEDdRemqpqpH8HP6C4@containers-us-west-44.railway.app:5472/railway')
     print("pgAdmin Connection sucessfull")
 
 for filename in os.listdir("./cogs"):
     if filename.endswith('.py'): 
-        bot.load_extension(f'cogs.{filename[:-3]}')
+        bot.load_extension(name=f'cogs.{filename[:-3]}')
 
 
 @bot.event
@@ -72,7 +66,7 @@ async def on_guild_join(guild: discord.Guild):
 
     textchannels = guild.text_channels
     channel = random.choice(textchannels)
-    embed=discord.Embed(title="Hi, I'm grandpa bot!", description=f"Thank you for adding me! <3\nNote that I do not need any setup whatsoever.\n\nPrefix: `~`\nHelp command: `~help`", color=discord.Color.random())
+    embed=discord.Embed(title="Hi, I'm grandpa bot!", description=f"Thank you for adding me! <3\nNote that I do not need any setup whatsoever.\n\nPrefix: `~`\nHelp command: `~help`\n\nCreated by: <@734641452214124674>", color=discord.Color.random())
     embed.set_footer(text="The use of this bot is in agreement of the privacy policy.")
 
     button = Button(label="Privacy Policy", url="https://github.com/pogrammar/Grandpa-bot/blob/master/PRIVACY.md")
@@ -83,6 +77,7 @@ async def on_guild_join(guild: discord.Guild):
 
 @bot.event
 async def on_guild_remove(guild):
+    await bot.db.execute('DELETE from guilds("guild_id", prefix)')
     print(f'Bot has been kicked from {guild.name}')
 
 
@@ -98,7 +93,7 @@ async def setprefix(ctx, *, new_prefix):
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def invite(ctx):
     await ctx.respond(f"Invite me: https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands")    
-
+    
 @bot.bridge_command()
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def patreon(ctx):
@@ -107,4 +102,3 @@ async def patreon(ctx):
 bot.loop.run_until_complete(create_db_pool())
 
 bot.run(config.TOKEN)
-
