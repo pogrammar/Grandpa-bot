@@ -23,7 +23,7 @@ class AkiView(discord.ui.View):
             return await interaction.response.send_message(content="This isn't your game")
 
         if answer == "Cancel":
-            return await interaction.response.edit_message("Session ended")
+            await interaction.response.edit_message(view=None)
 
         else:
             game.questions += 1
