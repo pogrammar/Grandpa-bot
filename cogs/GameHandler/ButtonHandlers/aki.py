@@ -18,8 +18,6 @@ class AkiView(discord.ui.View):
         if game.aki.progression >= game.win_at:
                 embed = await game.win()
                 await interaction.response.edit_message(embed=embed, view=self)
-                if answer == "yes":
-                    return self.stop()
         
         if interaction.user != game.player:
             return await interaction.response.send_message(content="This isn't your game")
