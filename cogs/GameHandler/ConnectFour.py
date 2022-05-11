@@ -5,9 +5,9 @@ from typing import Optional
 import discord
 from discord.ext import commands
 
-RED   = "🔴"
-BLUE  = "🔵"
-BLANK = "⬛"
+RED   = "<:Connect4Red:970935128039764029>"
+BLUE  = "<:Connect4White:970935127989432350>"
+BLANK = "<:Connect4Blank:970935128056549447>"
 
 class ConnectFour:
 
@@ -49,7 +49,7 @@ class ConnectFour:
     async def make_embed(self, *, status: bool) -> discord.Embed:
         embed = discord.Embed()
         if not status:
-            embed.description = f"**Turn:** {self.turn.name}\n**Piece:** `{self.player_to_emoji[self.turn]}`"
+            embed.description = f"**Turn:** {self.turn.name}\n**Piece:** {self.player_to_emoji[self.turn]}"
         else:
             status_ = f"{self.winner} won!" if self.winner else "Tie"
             embed.description = f"**Game over**\n{status_}"

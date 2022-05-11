@@ -53,8 +53,9 @@ class ErrorHandler(commands.Cog):
             except discord.Forbidden:
                 pass
             return
-        else:
-            await ctx.send("Internet error")
+        if isinstance(self, error, discord.NotFound(None, None)):
+            await ctx.reply("Internet error.")
+        if isinstance(error, discord.Forbidden()):
             pass
     @commands.Cog.listener()
     async def on_application_command_error(self, ctx, error):
@@ -105,9 +106,12 @@ class ErrorHandler(commands.Cog):
             except discord.Forbidden:
                 pass
             return
-        else:
-            await ctx.respond("Internet error")
-            pass
+        if isinstance(error, discord.NotFound(None, None)):
+            await ctx.respond("Internet error.")
+            return
+        if isinstance(error, discord.Forbidden):
+            await ctx.respond("Forbidden: Missing Permissions")
+            return
 
 
 def setup(bot):

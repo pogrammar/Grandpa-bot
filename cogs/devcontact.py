@@ -150,10 +150,20 @@ class DevContact(commands.Cog):
     async def suggest(self, ctx):
         """Suggest the devs something! It can be anything!"""
         class MyView(discord.ui.View):
+            def __init__(self):
+                super().__init__(timeout=20.0)
+            
             @discord.ui.button(label="Send suggestion!", style=discord.ButtonStyle.secondary, emoji="📜")
             async def button_callback(self, button, interaction):
                 modal = SuggestionModal(title="Create a new suggestion")
                 await interaction.response.send_modal(modal)
+            
+            async def interaction_check(self, interaction: discord.Interaction):
+                if interaction.user != self.ctx.author:
+                    await interaction.response.send_message(f"Sorry, but this interaction can only be used by {self.ctx.author.name}.", ephemeral=True)
+    
+            async def on_timeout(self):
+                return self.stop()
                 
         view = MyView()
         await ctx.respond("Click the button to suggest!", view = MyView())
@@ -163,10 +173,20 @@ class DevContact(commands.Cog):
     async def feedback(self, ctx):
         """We would love to hear from you! Your feedback really helps us improve!"""
         class MyView(discord.ui.View):
+            def __init__(self):
+                super().__init__(timeout=20.0)
+            
             @discord.ui.button(label="Send feedback", style=discord.ButtonStyle.primary, emoji="❤️")
             async def button_callback(self, button, interaction):
                 modal = FeedbackModal(title="Send feedback")
                 await interaction.response.send_modal(modal)
+            
+            async def interaction_check(self, interaction: discord.Interaction):
+                if interaction.user != self.ctx.author:
+                    await interaction.response.send_message(f"Sorry, but this interaction can only be used by {self.ctx.author.name}.", ephemeral=True)
+    
+            async def on_timeout(self):
+                return self.stop()
         
         view = MyView()
         await ctx.respond("Click the button to send feedback!", view = MyView())
@@ -176,10 +196,20 @@ class DevContact(commands.Cog):
     async def report(self, ctx):
         """Report us an error."""
         class MyView(discord.ui.View):
+            def __init__(self):
+                super().__init__(timeout=20.0)
+            
             @discord.ui.button(label="Report an error", style=discord.ButtonStyle.danger, emoji="⚠️")
             async def button_callback(self, button, interaction):
                 modal = ReportModal(title="Report an error")
                 await interaction.response.send_modal(modal)
+            
+            async def interaction_check(self, interaction: discord.Interaction):
+                if interaction.user != self.ctx.author:
+                    await interaction.response.send_message(f"Sorry, but this interaction can only be used by {self.ctx.author.name}.", ephemeral=True)
+    
+            async def on_timeout(self):
+                return self.stop()
                  
         view = MyView()
         await ctx.respond("Click the button to a report!", view = MyView()) 

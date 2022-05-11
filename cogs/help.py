@@ -7,7 +7,7 @@ class Help(commands.Cog):
         self.bot = bot
 
         self.about_pages = [
-            discord.Embed(title="About", description="I am a bot made collaborative with <@503720029456695306>\nI am a grandad who is updated on the latest memes. I respond to dad bot and mom bot, and I also have some funcions of my own. See them by clicking the buttons!\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
+            discord.Embed(title="About", description="I am a bot made by <@734641452214124674> and collaborative with <@503720029456695306>\nI am a grandad who is updated on the latest memes. I respond to dad bot and mom bot, and I also have some funcions of my own. See them by clicking the buttons!\n\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", color=discord.Color.random()),
         ]
 
 
@@ -132,7 +132,7 @@ class Help(commands.Cog):
                 show_disabled=False,
             ),
         ]
-        paginator = pages.Paginator(pages=page_groups, show_menu=True)
+        paginator = pages.Paginator(pages=page_groups, show_menu=True, disable_on_timeout=True)
         await paginator.send(ctx)
 
 def setup(bot):

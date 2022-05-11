@@ -1,16 +1,13 @@
 import discord
 from discord.ext import commands, bridge
 from discord.ui import *
-from GameHandler import hangman
 from typing import List
 import random
-import os
 import asyncio
 from main import bot
-import GameHandler
-from GameHandler import ButtonHandlers
-from GameHandler.ButtonHandlers import *
-
+import os
+from .GameHandler import *
+from .GameHandler import hangman
 
 class TicTacToeButton(discord.ui.Button["TicTacToe"]):
     def __init__(self, x: int, y: int):
@@ -140,7 +137,7 @@ class Games(commands.Cog):
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roll(self, ctx):
         """Rolls a dice... That's all."""
-        message = await ctx.respond("Choose a number:\n**4**, **6**, **8**, **10**, **12**, **20** ")
+        message = await ctx.defer("Choose a number:\n**4**, **6**, **8**, **10**, **12**, **20** ")
         
         def check(m):
             return m.author == ctx.author
@@ -156,21 +153,25 @@ class Games(commands.Cog):
             await message.send(f"**{random.randint(1, int(m))}**")
         except asyncio.TimeoutError:
             await message.delete()
-            await ctx.respond("Process has been canceled because you didn't respond in **30 seconds**")
+            await ctx.defer("Process has been canceled because you didn't respond in **30 seconds**")
 
     
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def hangman(self, ctx):
         """Starts a hangman game."""
-        await hangman.play(self.bot, ctx)
+        try:
+            await hangman.play(self.bot, ctx)
+            print("Hangman game started")
+        except Exception as e:
+            print(e)
     
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def rps(self, ctx):
         """Starts a rock-paper-scissors game."""
         await ctx.respond("Below:")
-        game = ButtonHandlers.BetaRockPaperScissors()
+        game = BetaRockPaperScissors()
         await game.start(ctx)
 
     @bridge.bridge_command()
@@ -178,33 +179,34 @@ class Games(commands.Cog):
     async def toss(self, ctx):
         """Toss a coin."""
         coin = ['+ heads', '- tails']
-        await ctx.respond(f"```diff\n{random.choice(coin)}\n```")
+        await ctx.defer(f"```diff\n{random.choice(coin)}\n```")
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def memory(self, ctx):
-        """Start a memory-based match-the pair game."""
         await ctx.respond("Below:")
-        game = ButtonHandlers.MemoryGame()
-        await game.start(ctx)
+        """Start a memory-based match-the pair game."""
+        try:
+            print("Get MMemory Game")
+            game = MemoryGame()
+            print("Start Memory Game")
+            await game.start(ctx)
+            print("Finished Memory game")
+        except Exception as e:
+            print(e)
 
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def aki(self, ctx):
         """Start an akinator game."""
-        await ctx.respond("Starting game...")
-        game = ButtonHandlers.BetaAkinator()
-        await game.start(ctx)
-
-    @bridge.bridge_command()
-    @commands.cooldown(1, 30, commands.BucketType.user)
-    async def connect4(self, ctx, member: discord.Member):
-        """Play connect4 with someone"""
-        await ctx.respond("Below:")
-        game = ConnectFour(
-            red  = ctx.author,         
-            blue = member,             
-        )
-        await game.start(ctx)    
+        try:
+            
+            await ctx.respond("Starting game...")
+            game = BetaAkinator()
+            print("Get Akinator game")
+            await game.start(ctx)   
+            print("Start akinator game")
+        except Exception as e:
+            print(e)
 
 def setup(bot):
     bot.add_cog(Games(bot))

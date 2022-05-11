@@ -10,13 +10,13 @@ class OwnerCommands(commands.Cog):
     @slash_command(guild_ids=[953593619288301598])
     async def ping(self, ctx):
         """Get the ping latency."""
-        await ctx.respond('Pong! {0}'.format(round(bot.latency, 3)))
+        await ctx.defer('Pong! {0}'.format(round(bot.latency, 3)))
         
         
     @slash_command(guild_ids=[953593619288301598])
     async def servers(self, ctx):
         """Number of servers I am in."""
-        await ctx.respond( f"I'm in {len(bot.guilds)} servers!")
+        await ctx.defer( f"I'm in {len(bot.guilds)} servers!")
 
 def setup(bot):
     bot.add_cog(OwnerCommands(bot))
