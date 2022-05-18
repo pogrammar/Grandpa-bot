@@ -3,6 +3,8 @@ import discord
 from discord.ext import bridge, commands
 import config
 import asyncpg
+from discord_together import DiscordTogether
+from discord.commands import Option
 import random
 from discord.ui import *
 
@@ -32,7 +34,7 @@ bot = bridge.Bot(command_prefix=get_prefix,
                   )
 
 async def create_db_pool():
-    bot.db = await asyncpg.create_pool(dsn='postgresql://postgres:G5KEDdRemqpqpH8HP6C4@containers-us-west-44.railway.app:5472/railway')
+    bot.db = await asyncpg.create_pool(dsn='My DsN oMg')
     print("pgAdmin Connection sucessfull")
 
 for filename in os.listdir("./cogs"):
@@ -42,6 +44,7 @@ for filename in os.listdir("./cogs"):
 
 @bot.event
 async def on_ready():
+    bot.togetherControl = await DiscordTogether(config.TOKEN)
     await bot.change_presence(
         status=discord.Status.idle,
         activity=discord.Activity(
@@ -98,7 +101,47 @@ async def invite(ctx):
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def patreon(ctx):
     await ctx.respond(f"Become a patron: https://www.patreon.com/betchespy")    
+
+
+
+@bot.slash_command()
+@commands.cooldown(1, 30, commands.BucketType.user)
+async def activity(
+    ctx, 
+    voice_channel: Option(discord.VoiceChannel, "The voice channel you want the activity in"),
+    game: Option(str, "The type of game you want to play", choices=['youtube', 'poker', 'betrayal', 'fishing', 'chess', 'letter-league', 'word-snack', 'sketch-heads', 'spellcast', 'awkword', 'checkers', 'blazing-8s', 'land-io', 'putt-party'])
     
+    ):
+    link = await bot.togetherControl.create_link(voice_channel.id, game)
+    await ctx.respond(f"Click the blue link!\n{link}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 bot.loop.run_until_complete(create_db_pool())
 
 bot.run(config.TOKEN)
