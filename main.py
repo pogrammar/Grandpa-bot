@@ -60,11 +60,6 @@ async def on_ready():
     
 @bot.event
 async def on_guild_join(guild: discord.Guild):
-    prefix = await bot.db.fetch('SELECT prefix FROM guilds WHERE "guild_id" = $1', guild.id)
-    if len(prefix) == 0:
-        await bot.db.execute('INSERT INTO guilds("guild_id", prefix) VALUES ($1, $2)', guild.id, DEFAULT_PREFIX)
-    else:
-        pass
     print(f'Bot has been added to {guild.name}')
 
     textchannels = guild.text_channels
@@ -109,7 +104,7 @@ async def patreon(ctx):
 async def activity(
     ctx, 
     voice_channel: Option(discord.VoiceChannel, "The voice channel you want the activity in"),
-    game: Option(str, "The type of game you want to play", choices=['youtube', 'poker', 'betrayal', 'fishing', 'chess', 'letter-league', 'word-snack', 'sketch-heads', 'spellcast', 'awkword', 'checkers', 'blazing-8s', 'land-io', 'putt-party'])
+    game: Option(str, "The type of game you want to play", choices=['youtube', 'poker', 'betrayal', 'fishing', 'chess', 'letter-league', 'word-snack', 'sketch-heads', 'spellcast', 'awkword', 'checkers', 'blazing-8s', 'land-io', 'putt-party', 'ask-away'])
     
     ):
     link = await bot.togetherControl.create_link(voice_channel.id, game)
