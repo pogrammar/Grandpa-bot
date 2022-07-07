@@ -201,7 +201,7 @@ class Games(commands.Cog):
         try:
             
             await ctx.respond("Starting game...")
-            game = BetaAkinator()
+            game = Akinator()
             print("Get Akinator game")
             await game.start(ctx)   
             print("Start akinator game")
