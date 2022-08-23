@@ -20,15 +20,18 @@ class Help(commands.Cog):
         
         self.game_pages = [
             discord.Embed(title="Games", description=f"In-Built fun games to play :)\n__**These are also availible in slash commands.**__", color=discord.Color.random()),
+            discord.Embed(title="Activities", description=f"In-Built fun games to play in-vcs with your friends :)\n__**These only availible in slash commands.**__", color=discord.Color.random()),
         ] 
         self.game_pages[0].add_field(name="Tic tac toe", value=f"Usage: `~tic`\nSends: `A tic tac toe game`\ncooldown: `30 seconds`", inline=False)
-        self.game_pages[0].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Dice roll", value=f"Usage: `~roll`\nSends: `A dice roll game`\ncooldown: `30 seconds`", inline=True)
         self.game_pages[0].add_field(name="Rock paper scissors", value=f"Usage: `~rps`\nSends: `A Rock paper scissors game`\ncooldown: `30 seconds`", inline=False)
-        self.game_pages[0].add_field(name="Hangman", value=f"Usage: `~hangman`\nSends: `A hangman game.`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Hangman", value=f"Usage: `~hangman`\nSends: `A hangman game.`\ncooldown: `30 seconds`", inline=True)
         self.game_pages[0].add_field(name="Akinator", value=f"Usage: `~aki`\nSends: `An akinator game.`\ncooldown: `30 seconds`", inline=False)
-        self.game_pages[0].add_field(name="Connect Four", value=f"Usage: `~connect4 <@member>`\nSends: `A connect4 game.`\ncooldown: `30 seconds`", inline=False)
+        self.game_pages[0].add_field(name="Connect Four", value=f"Usage: `~connect4 <@member>`\nSends: `A connect4 game.`\ncooldown: `30 seconds`", inline=True)
         self.game_pages[0].add_field(name="Memory", value=f"Usage: `~memory`\nSends: `A memory-based match the pair game.`\ncooldown: `30 seconds`", inline=False)
-        self.game_pages[0].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`\n\n [Invite me!](https://discord.com/api/oauth2/authorize?client_id=957709454583947276&permissions=535260822592&scope=bot%20applications.commands)   •   [Discord server](https://discord.gg/RVMNP6TAGx)   •   [Github](https://github.com/pogrammar/Grandpa-bot)   •   [Patreon](https://www.patreon.com/betchespy)", inline=False)
+        self.game_pages[0].add_field(name="Coin toss", value=f"Usage: `~toss`\nSummons: `The coin for tossing`\ncooldown: `30 seconds`", inline=True)
+
+        self.game_pages[1].add_field(name="Activity", value=f"Usage: `/activity <Voice Channel> <Game Type>`\nSummons: `An vc activity`\ncooldown: `30 seconds`", inline=True)
 
 
 

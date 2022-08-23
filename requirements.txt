@@ -1,4 +1,5 @@
 git+https://github.com/Pycord-Development/pycord
 git+https://github.com/pogrammar/Grandpa-Games
+akinator.py
 dadjokes
 asyncpg

@@ -159,7 +159,7 @@ class DevContact(commands.Cog):
                 await interaction.response.send_modal(modal)
             
             async def interaction_check(self, interaction: discord.Interaction):
-                if interaction.user != self.ctx.author:
+                if interaction.user != ctx.author:
                     await interaction.response.send_message(f"Sorry, but this interaction can only be used by {self.ctx.author.name}.", ephemeral=True)
     
             async def on_timeout(self):
@@ -182,7 +182,7 @@ class DevContact(commands.Cog):
                 await interaction.response.send_modal(modal)
             
             async def interaction_check(self, interaction: discord.Interaction):
-                if interaction.user != self.ctx.author:
+                if interaction.user != ctx.author:
                     await interaction.response.send_message(f"Sorry, but this interaction can only be used by {self.ctx.author.name}.", ephemeral=True)
     
             async def on_timeout(self):
@@ -205,7 +205,7 @@ class DevContact(commands.Cog):
                 await interaction.response.send_modal(modal)
             
             async def interaction_check(self, interaction: discord.Interaction):
-                if interaction.user != self.ctx.author:
+                if interaction.user != ctx.author:
                     await interaction.response.send_message(f"Sorry, but this interaction can only be used by {self.ctx.author.name}.", ephemeral=True)
     
             async def on_timeout(self):

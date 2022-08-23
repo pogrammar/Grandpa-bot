@@ -7,6 +7,7 @@ import asyncio
 from main import bot
 import os
 from .GameHandler import *
+from main import tips, counter
 from .GameHandler import hangman
 
 class TicTacToeButton(discord.ui.Button["TicTacToe"]):
@@ -30,13 +31,13 @@ class TicTacToeButton(discord.ui.Button["TicTacToe"]):
 
         if view.current_player == view.X:
             self.style = discord.ButtonStyle.danger
-            self.label = "X"
+            self.emoji = "<:X_:968012049957412925>"
             view.board[self.y][self.x] = view.X
             view.current_player = view.O
             content = "It is now O's turn"
         else:
             self.style = discord.ButtonStyle.success
-            self.label = "O"
+            self.label = "<:O_:968012050020307004>"
             view.board[self.y][self.x] = view.O
             view.current_player = view.X
             content = "It is now X's turn"
@@ -132,12 +133,20 @@ class Games(commands.Cog):
     async def tic(self, ctx):
         """Starts a tic-tac-toe game."""
         await ctx.respond("Tic Tac Toe: X goes first", view=TicTacToe())
+        counter += 1
+        if counter % 5 == 0:
+            await asyncio.sleep(1)
+            await ctx.send(random.choice(tips))
 
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roll(self, ctx):
         """Rolls a dice... That's all."""
-        message = await ctx.defer("Choose a number:\n**4**, **6**, **8**, **10**, **12**, **20** ")
+        message = await ctx.respond("Choose a number:\n**4**, **6**, **8**, **10**, **12**, **20** ")
+        counter += 1
+        if counter % 5 == 0:
+            await asyncio.sleep(1)
+            await ctx.send(random.choice(tips))
         
         def check(m):
             return m.author == ctx.author
@@ -153,7 +162,11 @@ class Games(commands.Cog):
             await message.send(f"**{random.randint(1, int(m))}**")
         except asyncio.TimeoutError:
             await message.delete()
-            await ctx.defer("Process has been canceled because you didn't respond in **30 seconds**")
+            await ctx.respond("Process has been canceled because you didn't respond in **30 seconds**")
+            counter += 1
+            if counter % 5 == 0:
+                await asyncio.sleep(1)
+                await ctx.send(random.choice(tips))
 
     
     @bridge.bridge_command()
@@ -162,6 +175,10 @@ class Games(commands.Cog):
         """Starts a hangman game."""
         try:
             await hangman.play(self.bot, ctx)
+            counter += 1
+            if counter % 5 == 0:
+                await asyncio.sleep(1)
+                await ctx.send(random.choice(tips))
             print("Hangman game started")
         except Exception as e:
             print(e)
@@ -173,13 +190,21 @@ class Games(commands.Cog):
         await ctx.respond("Below:")
         game = BetaRockPaperScissors()
         await game.start(ctx)
+        counter += 1
+        if counter % 5 == 0:
+            await asyncio.sleep(1)
+            await ctx.send(random.choice(tips))
 
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def toss(self, ctx):
         """Toss a coin."""
         coin = ['+ heads', '- tails']
-        await ctx.defer(f"```diff\n{random.choice(coin)}\n```")
+        await ctx.respond(f"```diff\n{random.choice(coin)}\n```")
+        counter += 1
+        if counter % 5 == 0:
+            await asyncio.sleep(1)
+            await ctx.send(random.choice(tips))
     @bridge.bridge_command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def memory(self, ctx):
@@ -190,6 +215,10 @@ class Games(commands.Cog):
             game = MemoryGame()
             print("Start Memory Game")
             await game.start(ctx)
+            counter += 1
+            if counter % 5 == 0:
+                await asyncio.sleep(1)
+                await ctx.send(random.choice(tips))
             print("Finished Memory game")
         except Exception as e:
             print(e)
@@ -204,6 +233,10 @@ class Games(commands.Cog):
             game = Akinator()
             print("Get Akinator game")
             await game.start(ctx)   
+            counter += 1
+            if counter % 5 == 0:
+                await asyncio.sleep(1)
+                await ctx.send(random.choice(tips))
             print("Start akinator game")
         except Exception as e:
             print(e)

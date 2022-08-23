@@ -1,9 +1,15 @@
-from .aki import BetaAkinator
-from .memory import MemoryGame
-from .rps import BetaRockPaperScissors
+from typing import NamedTuple
+
+from .aki import Akinator
+from .ConnectFour import ConnectFour
+from .rps import RockPaperScissors
+from .ButtonHandlers import *
 
 __all__ = (
-    'BetaAkinator',
-    'MemoryGame',
-    'BetaRockPaperScissors',
+    'Akinator', 
+    'ConnectFour',
+    'RockPaperScissors',
+    "BetaAkinator",
+    "MemoryGame",
+    "BetaRockPaperScissors",
 )

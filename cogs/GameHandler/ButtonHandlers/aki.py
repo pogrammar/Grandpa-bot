@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import discord
 from discord.ext import commands
-
+import akinator
 from ..aki import Akinator
 
 class AkiView(discord.ui.View):
@@ -17,20 +17,38 @@ class AkiView(discord.ui.View):
         
         if game.aki.progression >= game.win_at:
                 embed = await game.win()
-                await interaction.response.edit_message(embed=embed, view=self)
+                await interaction.response.defer()
+                await interaction.edit_original_message(embed=embed, view=self)
+                if answer ==  "yes":
+                    await interaction.edit_original_message(view=None)
         
         if interaction.user != game.player:
             return await interaction.response.send_message(content="This isn't your game")
+       
 
         if answer == "Cancel":
-            await interaction.response.edit_message(view=None)
+            await interaction.response.defer()
+            await interaction.edit_original_message(view=None)
 
         else:
-            game.questions += 1
-            await game.aki.answer(answer)
+            try:
+                game.questions += 1
+                await game.aki.answer(answer)
 
-            embed = await game.build_embed()
-            await interaction.response.edit_message(embed=embed, view=self)
+                embed = await game.build_embed()
+                await interaction.response.defer()
+                await interaction.edit_original_message(embed=embed, view=self)
+            except akinator.AkiNoQuestions:
+                Defeat_embed = discord.Embed(title="No more questions", description="You won. I have run out of questions", )
+                embed.set_image(url="https://img.ifunny.co/images/5ebb96b175c6404b8b6dfaa7fc196a55ea9bd30fabf3314f2cd9856905c1de24_1.jpg")
+                await interaction.response.defer()
+                await interaction.edit_original_message(embed=Defeat_embed, view=None)
+            except akinator.AkiTimedOut:
+                await interaction.response.defer()
+                await interaction.edit_original_message("Your interaction has timed out", view=None)
+            except akinator.CantGoBackAnyFurther:
+                await interaction.response.defer()
+                await interaction.edit_original_message("Cmon. You cant go back from the first question.", view=None)
 
 
     @discord.ui.button(label="yes", style=discord.ButtonStyle.green)

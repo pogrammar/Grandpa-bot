@@ -7,6 +7,13 @@ from discord_together import DiscordTogether
 from discord.commands import Option
 import random
 from discord.ui import *
+counter = 0
+tips = [
+  "You can join the [support server](https://discord.gg/vbmqkrUWJD) for the latest updates! https://discord.gg/vbmqkrUWJD",
+  "Want exclusive-access to grandpa bot's beta features, become a patreon today! https://www.patreon.com/betchespy",
+  "We have a giveaway going on in [support server](https://discord.gg/vbmqkrUWJD)! Check it out [here!](https://discord.com/channels/456542159210807307/976578984244555847/976579468300804136) ",
+  "Patreons get verious perks! check them out here! https://www.patreon.com/betchespy",
+]
 
 DEFAULT_PREFIX = '~'
 
@@ -99,7 +106,7 @@ async def patreon(ctx):
 
 
 
-@bot.slash_command()
+@bot.slash_command(guild_ids=[953593619288301598, 456542159210807307])
 @commands.cooldown(1, 30, commands.BucketType.user)
 async def activity(
     ctx, 
@@ -109,22 +116,6 @@ async def activity(
     ):
     link = await bot.togetherControl.create_link(voice_channel.id, game)
     await ctx.respond(f"Click the blue link!\n{link}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

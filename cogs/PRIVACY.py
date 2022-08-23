@@ -1,13 +1,45 @@
 import discord
 from discord.ext import commands, bridge
 from discord.ui import *
+from main import tips, counter, get_cooldown
+import random
+from discord.commands import cooldown
+import asyncio
+
+
+class CustomCooldown:
+    def __init__(self, rate: int, per: float, alter_rate: int, alter_per: float, bucket: commands.BucketType, *, elements):
+
+        intElementArray = []
+        for element in elements:
+          
+          intElementArray.append(int(element))
+        self.elements = intElementArray
+        self.default_mapping = commands.CooldownMapping.from_cooldown(rate, per, bucket)
+        self.altered_mapping = commands.CooldownMapping.from_cooldown(alter_rate, alter_per, bucket)
+
+    def __call__(self, ctx: commands.Context):
+        key = self.altered_mapping._bucket_key(ctx.message)
+        if key in self.elements:
+            bucket = self.altered_mapping.get_bucket(ctx.message)
+        else:
+            bucket = self.default_mapping.get_bucket(ctx.message)
+        retry_after = bucket.update_rate_limit()
+        if retry_after:
+            raise commands.CommandOnCooldown(bucket, retry_after)
+        return True
+
+
+
+
+
 
 class Privacy(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @bridge.bridge_command()
-    @commands.cooldown(1, 30, commands.BucketType.user)
+    @commands.check(CustomCooldown(ctx=privacy.ctx))
     async def privacy(self, ctx):
         """Our terms on privacy."""
         embed = discord.Embed(title="Our terms on privacy.", description="Its listed in the embed, Or you can view it by clicking the button below.")
@@ -32,8 +64,12 @@ class Privacy(commands.Cog):
         button = Button(label="Privacy Policy", url="hhttps://github.com/pogrammar/Grandpa-bot/blob/master/PRIVACY.md")
         view = View(timeout=30)
         view.add_item(button)
-
+        cooldown(1, get_cooldown(user=ctx.author.id), commands.BucketType.user)
         await ctx.respond(embed=embed, view=view)
+        counter += 1
+        if counter % 5 == 0:
+            await asyncio.sleep(1)
+            await ctx.send(random.choice(tips))
 
 
 def setup(bot):
